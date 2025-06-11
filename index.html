@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orçamento de Mudança</title>
+  <link rel="stylesheet" href="style.css"> <!-- Seu CSS -->
+</head>
+<body>
+  <div class="container">
+    <h1>Solicitação de Mudança</h1>
+
+    <form id="mudancaForm">
+      <fieldset>
+        <legend><strong>Dados do Cliente</strong></legend>
+
+        <label for="nomeCliente">Nome:</label>
+        <input type="text" id="nomeCliente" required>
+
+        <label for="dataMudanca">Data da Mudança:</label>
+        <input type="date" id="dataMudanca" required>
+
+        <label for="bairroOrigem">Bairro de Origem:</label>
+        <input type="text" id="bairroOrigem" required>
+
+        <label for="bairroDestino">Bairro de Destino:</label>
+        <input type="text" id="bairroDestino" required>
+
+        <label for="orcamento">Orçamento Estimado (R$):</label>
+        <input type="number" id="orcamento" required>
+
+        <label for="whatsCliente">WhatsApp do Cliente:</label>
+        <input type="tel" id="whatsCliente" placeholder="Ex: 11999999999" required>
+      </fieldset>
+
+      <fieldset>
+        <legend><strong>Selecione os Itens</strong></legend>
+
+        <label><input type="checkbox" name="item" value="Sofá" data-volume="2.5"> Sofá</label>
+        <label><input type="checkbox" name="item" value="Geladeira" data-volume="1.2"> Geladeira</label>
+        <label><input type="checkbox" name="item" value="Fogão" data-volume="0.8"> Fogão</label>
+        <label><input type="checkbox" name="item" value="Máquina de Lavar" data-volume="1.0"> Máquina de Lavar</label>
+        <label><input type="checkbox" name="item" value="Hack" data-volume="0.9"> Hack</label>
+        <label><input type="checkbox" name="item" value="Microondas" data-volume="0.3"> Microondas</label>
+        <label><input type="checkbox" name="item" value="Estante" data-volume="1.5"> Estante</label>
+      </fieldset>
+
+      <div class="botoes">
+        <button type="button" onclick="calcularMudanca()">Calcular</button>
+        <button type="button" onclick="enviarWhatsApp()">Enviar para o WhatsApp</button>
+      </div>
+    </form>
+
+    <div id="resultado" class="resultado"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
