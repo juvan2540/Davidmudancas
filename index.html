@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Orçamento de Mudança</title>
-  <link rel="stylesheet" href="style.css"> <!-- Seu CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <div class="container">
+
+    <!-- Logo da empresa -->
+    <img src="img/David.png" alt="Logo da empresa" style="width: 150px; height: auto;" />
+
     <h1>Solicitação de Mudança</h1>
 
     <form id="mudancaForm">
@@ -15,22 +20,19 @@
         <legend><strong>Dados do Cliente</strong></legend>
 
         <label for="nomeCliente">Nome:</label>
-        <input type="text" id="nomeCliente" required>
+        <input type="text" id="nomeCliente" required />
 
         <label for="dataMudanca">Data da Mudança:</label>
-        <input type="date" id="dataMudanca" required>
+        <input type="date" id="dataMudanca" required />
 
         <label for="bairroOrigem">Bairro de Origem:</label>
-        <input type="text" id="bairroOrigem" required>
+        <input type="text" id="bairroOrigem" required />
 
         <label for="bairroDestino">Bairro de Destino:</label>
-        <input type="text" id="bairroDestino" required>
+        <input type="text" id="bairroDestino" required />
 
         <label for="orcamento">Orçamento Estimado (R$):</label>
-        <input type="number" id="orcamento" required>
-
-        <label for="whatsCliente">WhatsApp do Cliente:</label>
-        <input type="tel" id="whatsCliente" placeholder="Ex: 11999999999" required>
+        <input type="number" id="orcamento" required />
       </fieldset>
 
       <fieldset>
@@ -43,17 +45,135 @@
         <label><input type="checkbox" name="item" value="Hack" data-volume="0.9"> Hack</label>
         <label><input type="checkbox" name="item" value="Microondas" data-volume="0.3"> Microondas</label>
         <label><input type="checkbox" name="item" value="Estante" data-volume="1.5"> Estante</label>
+        <label><input type="checkbox" name="item" value="Cama" data-volume="2.0"> Cama</label>
+        <label><input type="checkbox" name="item" value="Mesa" data-volume="1.0"> Mesa</label>
+        <label><input type="checkbox" name="item" value="Cadeira" data-volume="0.5"> Cadeira</label>
+        <label><input type="checkbox" name="item" value="Armário" data-volume="2.3"> Armário</label>
+        <label><input type="checkbox" name="item" value="TV" data-volume="0.4"> TV</label>
+        <label><input type="checkbox" name="item" value="Bicicleta" data-volume="1.1"> Bicicleta</label>
       </fieldset>
 
       <div class="botoes">
         <button type="button" onclick="calcularMudanca()">Calcular</button>
         <button type="button" onclick="enviarWhatsApp()">Enviar para o WhatsApp</button>
+        <button type="button" onclick="gerarPDF()">Gerar PDF do Orçamento</button>
       </div>
     </form>
 
     <div id="resultado" class="resultado"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    function formatarData(dataISO) {
+      const [ano, mes, dia] = dataISO.split("-");
+      return `${dia}/${mes}/${ano}`;
+    }
+
+    function calcularMudanca() {
+      const checkboxes = document.querySelectorAll('input[name="item"]:checked');
+      let itensSelecionados = [];
+      let volumeTotal = 0;
+
+      checkboxes.forEach(item => {
+        const nome = item.value;
+        const volume = parseFloat(item.getAttribute("data-volume"));
+        itensSelecionados.push(nome);
+        volumeTotal += volume;
+      });
+
+      const resultado = document.getElementById("resultado");
+
+      if (itensSelecionados.length === 0) {
+        resultado.innerHTML = "<p style='color:red;'>Por favor, selecione ao menos um item.</p>";
+        return;
+      }
+
+      resultado.innerHTML = `
+        <h3>Itens Selecionados:</h3>
+        <ul>${itensSelecionados.map(item => `<li>${item}</li>`).join('')}</ul>
+        <p><strong>Volume estimado:</strong> ${volumeTotal.toFixed(2)} m³</p>
+      `;
+    }
+
+    function enviarWhatsApp() {
+      const nome = document.getElementById("nomeCliente").value.trim();
+      const data = document.getElementById("dataMudanca").value;
+      const origem = document.getElementById("bairroOrigem").value.trim();
+      const destino = document.getElementById("bairroDestino").value.trim();
+      const orcamento = document.getElementById("orcamento").value;
+      const whatsCliente = "11945414499"; // Número fixo da empresa
+
+      const checkboxes = document.querySelectorAll('input[name="item"]:checked');
+      let itensSelecionados = [];
+      let volumeTotal = 0;
+
+      checkboxes.forEach(item => {
+        const nomeItem = item.value;
+        const volume = parseFloat(item.getAttribute("data-volume"));
+        itensSelecionados.push(nomeItem);
+        volumeTotal += volume;
+      });
+
+      if (!nome || !data || !origem || !destino || !orcamento || itensSelecionados.length === 0) {
+        alert("Por favor, preencha todos os campos e selecione ao menos um item.");
+        return;
+      }
+
+      const dataFormatada = formatarData(data);
+
+      const mensagem = `Olá, meu nome é ${nome} e gostaria de solicitar uma mudança:\n\n📦 *Itens selecionados:*\n${itensSelecionados.map(i => "- " + i).join('\n')}\n\n📐 *Volume estimado:* ${volumeTotal.toFixed(2)} m³\n📅 *Data da mudança:* ${dataFormatada}\n🏠 *Origem:* ${origem}\n🏡 *Destino:* ${destino}\n💰 *Orçamento estimado:* R$ ${parseFloat(orcamento).toFixed(2)}`;
+
+      const link = `https://wa.me/55${whatsCliente}?text=${encodeURIComponent(mensagem)}`;
+      window.open(link, '_blank');
+    }
+
+    async function gerarPDF() {
+      const { jsPDF } = window.jspdf;
+
+      const nome = document.getElementById("nomeCliente").value.trim();
+      const data = document.getElementById("dataMudanca").value;
+      const origem = document.getElementById("bairroOrigem").value.trim();
+      const destino = document.getElementById("bairroDestino").value.trim();
+      const orcamento = document.getElementById("orcamento").value;
+
+      const checkboxes = document.querySelectorAll('input[name="item"]:checked');
+      let itensSelecionados = [];
+      let volumeTotal = 0;
+
+      checkboxes.forEach(item => {
+        const nomeItem = item.value;
+        const volume = parseFloat(item.getAttribute("data-volume"));
+        itensSelecionados.push(nomeItem);
+        volumeTotal += volume;
+      });
+
+      if (!nome || !data || !origem || !destino || !orcamento || itensSelecionados.length === 0) {
+        alert("Preencha todos os campos e selecione ao menos um item.");
+        return;
+      }
+
+      const dataFormatada = formatarData(data);
+
+      const doc = new jsPDF();
+      doc.setFontSize(14);
+      doc.text("Orçamento de Mudança", 20, 20);
+      doc.setFontSize(12);
+      doc.text(`Cliente: ${nome}`, 20, 30);
+      doc.text(`Data da mudança: ${dataFormatada}`, 20, 40);
+      doc.text(`Origem: ${origem}`, 20, 50);
+      doc.text(`Destino: ${destino}`, 20, 60);
+      doc.text(`Orçamento Estimado: R$ ${parseFloat(orcamento).toFixed(2)}`, 20, 70);
+      doc.text(`Volume Estimado: ${volumeTotal.toFixed(2)} m³`, 20, 80);
+
+      doc.text("Itens Selecionados:", 20, 90);
+      let y = 100;
+      itensSelecionados.forEach(item => {
+        doc.text(`- ${item}`, 25, y);
+        y += 10;
+      });
+
+      doc.save(`Orcamento-${nome.replace(/\s/g, "_")}.pdf`);
+    }
+  </script>
 </body>
 </html>
