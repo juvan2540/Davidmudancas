@@ -10,12 +10,18 @@
 <body>
   <div class="container">
 
-    <!-- Logo da empresa -->
-    <img src="img/David.png" alt="Logo da empresa" style="width: 150px; height: auto;" />
+    <!-- Logo estilizado -->
+    <div class="logo" aria-label="Logo David Couto Mudanças">
+      
+      <div>
+        <div>David Couto</div>
+        <img src="img/David.png" alt="Logo da empresa" style="width: 150px; height: auto;" />
+      </div>
+    </div>
 
     <h1>Solicitação de Mudança</h1>
 
-    <form id="mudancaForm">
+    <form id="mudancaForm" onsubmit="return false;">
       <fieldset>
         <legend><strong>Dados do Cliente</strong></legend>
 
@@ -32,148 +38,66 @@
         <input type="text" id="bairroDestino" required />
 
         <label for="orcamento">Orçamento Estimado (R$):</label>
-        <input type="number" id="orcamento" required />
+        <input type="number" id="orcamento" min="0" step="0.01" required />
       </fieldset>
 
-      <fieldset>
-        <legend><strong>Selecione os Itens</strong></legend>
+   <fieldset>
+  <legend><strong>Selecione os Itens</strong></legend>
 
-        <label><input type="checkbox" name="item" value="Sofá" data-volume="2.5"> Sofá</label>
-        <label><input type="checkbox" name="item" value="Geladeira" data-volume="1.2"> Geladeira</label>
-        <label><input type="checkbox" name="item" value="Fogão" data-volume="0.8"> Fogão</label>
-        <label><input type="checkbox" name="item" value="Máquina de Lavar" data-volume="1.0"> Máquina de Lavar</label>
-        <label><input type="checkbox" name="item" value="Hack" data-volume="0.9"> Hack</label>
-        <label><input type="checkbox" name="item" value="Microondas" data-volume="0.3"> Microondas</label>
-        <label><input type="checkbox" name="item" value="Estante" data-volume="1.5"> Estante</label>
-        <label><input type="checkbox" name="item" value="Cama" data-volume="2.0"> Cama</label>
-        <label><input type="checkbox" name="item" value="Mesa" data-volume="1.0"> Mesa</label>
-        <label><input type="checkbox" name="item" value="Cadeira" data-volume="0.5"> Cadeira</label>
-        <label><input type="checkbox" name="item" value="Armário" data-volume="2.3"> Armário</label>
-        <label><input type="checkbox" name="item" value="TV" data-volume="0.4"> TV</label>
-        <label><input type="checkbox" name="item" value="Bicicleta" data-volume="1.1"> Bicicleta</label>
-      </fieldset>
+  <h3>💺 Sala</h3>
+  <label><input type="checkbox" name="item" value="Sofá" data-volume="2.5"> Sofá</label>
+  <label><input type="checkbox" name="item" value="Hack" data-volume="0.9"> Hack</label>
+  <label><input type="checkbox" name="item" value="TV de 55&quot;" data-volume="0.6"> TV de 55"</label>
+  <label><input type="checkbox" name="item" value="Estante" data-volume="1.5"> Estante</label>
+  <label><input type="checkbox" name="item" value="Ventilador" data-volume="0.5"> Ventilador</label>
 
-      <div class="botoes">
+  <h3>🍽️ Cozinha</h3>
+  <label><input type="checkbox" name="item" value="Geladeira" data-volume="1.2"> Geladeira</label>
+  <label><input type="checkbox" name="item" value="Fogão" data-volume="0.8"> Fogão</label>
+  <label><input type="checkbox" name="item" value="Microondas" data-volume="0.3"> Microondas</label>
+  <label><input type="checkbox" name="item" value="Mesa" data-volume="1.0"> Mesa</label>
+  <label><input type="checkbox" name="item" value="Cadeira" data-volume="0.5"> Cadeira</label>
+
+  <h3>🛏️ Quarto</h3>
+  <label><input type="checkbox" name="item" value="Cama" data-volume="2.0"> Cama</label>
+  <label><input type="checkbox" name="item" value="Armário" data-volume="2.3"> Armário</label>
+  <label><input type="checkbox" name="item" value="Guarda-roupa" data-volume="2.8"> Guarda-roupa</label>
+  <label><input type="checkbox" name="item" value="Cômoda" data-volume="1.6"> Cômoda</label>
+  <label><input type="checkbox" name="item" value="Berço" data-volume="1.3"> Berço</label>
+
+  <h3>🛁 Banheiro</h3>
+  <label><input type="checkbox" name="item" value="Armário de Banheiro" data-volume="0.6"> Armário de Banheiro</label>
+  <label><input type="checkbox" name="item" value="Cesto de Roupas" data-volume="0.3"> Cesto de Roupas</label>
+
+  <h3>🧺 Área de Serviço</h3>
+  <label><input type="checkbox" name="item" value="Máquina de Lavar" data-volume="1.0"> Máquina de Lavar</label>
+  <label><input type="checkbox" name="item" value="Freezer" data-volume="1.9"> Freezer</label>
+  <label><input type="checkbox" name="item" value="Lavadora de Alta Pressão" data-volume="0.7"> Lavadora de Alta Pressão</label>
+
+  <h3>🖥️ Escritório</h3>
+  <label><input type="checkbox" name="item" value="Notebook" data-volume="0.2"> Notebook</label>
+  <label><input type="checkbox" name="item" value="Impressora" data-volume="0.4"> Impressora</label>
+  <label><input type="checkbox" name="item" value="Mesa de Escritório" data-volume="1.2"> Mesa de Escritório</label>
+  <label><input type="checkbox" name="item" value="Cadeira de Escritório" data-volume="0.7"> Cadeira de Escritório</label>
+
+  <h3>🚗 Garagem / Quintal</h3>
+  <label><input type="checkbox" name="item" value="Bicicleta" data-volume="1.1"> Bicicleta</label>
+  <label><input type="checkbox" name="item" value="Ferramentas" data-volume="0.6"> Caixa de Ferramentas</label>
+  <label><input type="checkbox" name="item" value="Escada" data-volume="1.0"> Escada</label>
+  <label><input type="checkbox" name="item" value="Ar-condicionado" data-volume="1.4"> Ar-condicionado</label>
+</fieldset>
+
+
+      <div class="botoes" style="margin-top: 1em;">
         <button type="button" onclick="calcularMudanca()">Calcular</button>
-        <button type="button" onclick="enviarWhatsApp()">Enviar para o WhatsApp</button>
-        <button type="button" onclick="gerarPDF()">Gerar PDF do Orçamento</button>
+        <button type="button" onclick="enviarWhatsAppEPrepararPDF()">Enviar para o WhatsApp e Preparar PDF</button>
+        <button type="button" id="btnSalvarPDF" style="display:none;" onclick="salvarPDF()">Salvar PDF do Orçamento</button>
       </div>
     </form>
 
-    <div id="resultado" class="resultado"></div>
+    <div id="resultado" class="resultado" style="margin-top: 1em;"></div>
   </div>
 
-  <script>
-    function formatarData(dataISO) {
-      const [ano, mes, dia] = dataISO.split("-");
-      return `${dia}/${mes}/${ano}`;
-    }
-
-    function calcularMudanca() {
-      const checkboxes = document.querySelectorAll('input[name="item"]:checked');
-      let itensSelecionados = [];
-      let volumeTotal = 0;
-
-      checkboxes.forEach(item => {
-        const nome = item.value;
-        const volume = parseFloat(item.getAttribute("data-volume"));
-        itensSelecionados.push(nome);
-        volumeTotal += volume;
-      });
-
-      const resultado = document.getElementById("resultado");
-
-      if (itensSelecionados.length === 0) {
-        resultado.innerHTML = "<p style='color:red;'>Por favor, selecione ao menos um item.</p>";
-        return;
-      }
-
-      resultado.innerHTML = `
-        <h3>Itens Selecionados:</h3>
-        <ul>${itensSelecionados.map(item => `<li>${item}</li>`).join('')}</ul>
-        <p><strong>Volume estimado:</strong> ${volumeTotal.toFixed(2)} m³</p>
-      `;
-    }
-
-    function enviarWhatsApp() {
-      const nome = document.getElementById("nomeCliente").value.trim();
-      const data = document.getElementById("dataMudanca").value;
-      const origem = document.getElementById("bairroOrigem").value.trim();
-      const destino = document.getElementById("bairroDestino").value.trim();
-      const orcamento = document.getElementById("orcamento").value;
-      const whatsCliente = "11945414499"; // Número fixo da empresa
-
-      const checkboxes = document.querySelectorAll('input[name="item"]:checked');
-      let itensSelecionados = [];
-      let volumeTotal = 0;
-
-      checkboxes.forEach(item => {
-        const nomeItem = item.value;
-        const volume = parseFloat(item.getAttribute("data-volume"));
-        itensSelecionados.push(nomeItem);
-        volumeTotal += volume;
-      });
-
-      if (!nome || !data || !origem || !destino || !orcamento || itensSelecionados.length === 0) {
-        alert("Por favor, preencha todos os campos e selecione ao menos um item.");
-        return;
-      }
-
-      const dataFormatada = formatarData(data);
-
-      const mensagem = `Olá, meu nome é ${nome} e gostaria de solicitar uma mudança:\n\n📦 *Itens selecionados:*\n${itensSelecionados.map(i => "- " + i).join('\n')}\n\n📐 *Volume estimado:* ${volumeTotal.toFixed(2)} m³\n📅 *Data da mudança:* ${dataFormatada}\n🏠 *Origem:* ${origem}\n🏡 *Destino:* ${destino}\n💰 *Orçamento estimado:* R$ ${parseFloat(orcamento).toFixed(2)}`;
-
-      const link = `https://wa.me/55${whatsCliente}?text=${encodeURIComponent(mensagem)}`;
-      window.open(link, '_blank');
-    }
-
-    async function gerarPDF() {
-      const { jsPDF } = window.jspdf;
-
-      const nome = document.getElementById("nomeCliente").value.trim();
-      const data = document.getElementById("dataMudanca").value;
-      const origem = document.getElementById("bairroOrigem").value.trim();
-      const destino = document.getElementById("bairroDestino").value.trim();
-      const orcamento = document.getElementById("orcamento").value;
-
-      const checkboxes = document.querySelectorAll('input[name="item"]:checked');
-      let itensSelecionados = [];
-      let volumeTotal = 0;
-
-      checkboxes.forEach(item => {
-        const nomeItem = item.value;
-        const volume = parseFloat(item.getAttribute("data-volume"));
-        itensSelecionados.push(nomeItem);
-        volumeTotal += volume;
-      });
-
-      if (!nome || !data || !origem || !destino || !orcamento || itensSelecionados.length === 0) {
-        alert("Preencha todos os campos e selecione ao menos um item.");
-        return;
-      }
-
-      const dataFormatada = formatarData(data);
-
-      const doc = new jsPDF();
-      doc.setFontSize(14);
-      doc.text("Orçamento de Mudança", 20, 20);
-      doc.setFontSize(12);
-      doc.text(`Cliente: ${nome}`, 20, 30);
-      doc.text(`Data da mudança: ${dataFormatada}`, 20, 40);
-      doc.text(`Origem: ${origem}`, 20, 50);
-      doc.text(`Destino: ${destino}`, 20, 60);
-      doc.text(`Orçamento Estimado: R$ ${parseFloat(orcamento).toFixed(2)}`, 20, 70);
-      doc.text(`Volume Estimado: ${volumeTotal.toFixed(2)} m³`, 20, 80);
-
-      doc.text("Itens Selecionados:", 20, 90);
-      let y = 100;
-      itensSelecionados.forEach(item => {
-        doc.text(`- ${item}`, 25, y);
-        y += 10;
-      });
-
-      doc.save(`Orcamento-${nome.replace(/\s/g, "_")}.pdf`);
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

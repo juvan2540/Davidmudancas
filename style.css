@@ -1,137 +1,99 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: Arial, sans-serif;
-  background: #f7f7f7;
-  padding: 20px;
+  margin: 1em;
+  background-color: #f5f6fa;
   color: #333;
 }
 
 .container {
-  max-width: 700px;
-  background: #fff;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 25px;
+  background-color: white;
+  padding: 2em;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #004080;
-}
-
-form fieldset {
-  border: 1px solid #ccc;
-  padding: 15px 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-form legend {
-  font-weight: bold;
-  padding: 0 10px;
-  color: #004080;
+  color: #2980b9;
+  margin-bottom: 1.5em;
 }
 
 label {
   display: block;
-  margin-bottom: 10px;
+  margin-top: 0.8em;
   font-weight: 600;
 }
 
 input[type="text"],
-input[type="number"],
-input[type="date"] {
+input[type="date"],
+input[type="number"] {
   width: 100%;
-  padding: 8px 10px;
-  border: 1px solid #aaa;
+  padding: 0.5em;
+  margin-top: 0.3em;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1rem;
-  margin-top: 4px;
+  box-sizing: border-box;
 }
 
-input[type="checkbox"] {
-  margin-right: 8px;
-  transform: scale(1.2);
-  vertical-align: middle;
+fieldset {
+  margin-bottom: 1.5em;
+  border: 1px solid #ddd;
+  padding: 1em;
+  border-radius: 5px;
 }
 
-form fieldset:last-of-type label {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-  font-weight: normal;
-  font-size: 0.95rem;
-}
-
-.botoes {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
+legend {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2980b9;
 }
 
 .botoes button {
-  flex: 1 1 30%;
-  padding: 12px;
-  background: #004080;
+  background-color: #2980b9;
   color: white;
-  font-weight: bold;
   border: none;
-  border-radius: 5px;
+  padding: 0.7em 1.3em;
+  margin-right: 0.8em;
+  border-radius: 4px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
-  min-width: 140px;
+  transition: background-color 0.3s ease;
 }
 
 .botoes button:hover {
-  background: #002952;
+  background-color: #1b6dbf;
 }
 
-.resultado {
-  background: #e0f0ff;
-  padding: 15px;
+.logo {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+  margin-bottom: 1em;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
   border-radius: 6px;
-  border: 1px solid #99c2ff;
-  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 900;
+  font-size: 1.6rem;
+  font-family: monospace;
 }
 
-img {
-  display: block;
-  margin: 0 auto 20px auto;
-  max-width: 150px;
-  height: auto;
-}
-
-/* Media Queries para responsividade */
-@media (max-width: 768px) {
-  .container {
-    padding: 15px;
-    max-width: 95%;
-  }
-
-  .botoes button {
-    flex: 1 1 45%;
-  }
-}
-
-@media (max-width: 480px) {
-  label {
-    font-size: 0.9rem;
-  }
-
-  .botoes {
-    flex-direction: column;
-  }
-
-  .botoes button {
-    flex: 1 1 100%;
-  }
+.logo-text {
+  color: #2980b9;
+  letter-spacing: 1.2px;
+  line-height: 1;
 }
